@@ -1,0 +1,125 @@
+########################################
+# Unity 6
+########################################
+
+# Dossiers temporaires Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+CrashReport/
+[Mm]emoryCaptures/
+.utmp/
+
+# Cache Unity
+# GI / Lightmapping
+**/Lightmap-*/
+**/LightProbes.asset
+**/ReflectionProbe-*.exr
+**/GICache/
+
+# Shader cache
+**/ShaderCache/
+**/*.shadercache
+
+# Addressables
+Assets/StreamingAssets/aa.meta
+Assets/StreamingAssets/aa/*
+Assets/AddressableAssetsData/*/*.bin*
+
+# Package Manager
+.npm/
+Packages/com.unity.package-manager-ui/*
+
+# XR / VR
+**/XRDeviceLogs/
+**/XR/Generated/
+# Oculus
+Assets/Plugins/Oculus/Tools/Spatializer/*
+Oculus/Avatar2/Build/*
+# OpenXR cache
+**/OpenXR/FeatureSupportCache/
+
+# Multiplayer/Netcode (NGO/Transport caches)
+**/NetCodeGenerated/**
+**/SnapshotDataCache/**
+
+
+########################################
+# IDE: Visual Studio
+########################################
+
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.csproj
+*.sln
+*.user
+*.pdb
+*.mdb
+*.pidb
+*.cache/
+*.opendb
+*.svd
+
+# VS Installer Config — volontairement NON ignoré
+# (utile pour partager les workloads)
+# .vsconfig
+
+
+########################################
+# IDE: VSCode
+########################################
+
+.vscode/
+.history/
+*.code-workspace
+
+
+########################################
+# IDE: JetBrains Rider
+########################################
+
+.idea/
+*.sln.iml
+*.DotSettings.user
+/.fleet/
+
+
+########################################
+# OS files
+########################################
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.nfs*
+
+
+########################################
+# Logs & miscellanous
+########################################
+
+*.log
+*.stacktrace
+*.booproj
+
+# Archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz

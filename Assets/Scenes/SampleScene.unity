@@ -507,6 +507,105 @@ Transform:
   - {fileID: 521319686}
   m_Father: {fileID: 503592700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &242994569
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1405198638}
+    m_Modifications:
+    - target: {fileID: 1974187325349370972, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_ColorPropertyName
+      value: _RimColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973649085223906267, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053394279983507675, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431867926242384949, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431867926595120945, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669005, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_Name
+      value: Teleport Anchor (Escape)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.21500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.823
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6821895
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7311755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -93.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4a645c929982ea41a52b5037ee7d94d, type: 3}
+--- !u!4 &242994570 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
+    type: 3}
+  m_PrefabInstance: {fileID: 242994569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &243499555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2431,6 +2530,12 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 1188042902095879605}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &801954714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+    type: 3}
+  m_PrefabInstance: {fileID: 812522201102543125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &815753319 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4487165678473495595, guid: 208c2548f5e1da646af2d1b9e3cf4cf9,
@@ -2644,6 +2749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Teleport Anchor (MiniGame1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134302614855669005, guid: c4a645c929982ea41a52b5037ee7d94d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8134302614855669011, guid: c4a645c929982ea41a52b5037ee7d94d,
         type: 3}
@@ -3522,9 +3632,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 801954714}
   - {fileID: 21114113}
   - {fileID: 2105210867}
   - {fileID: 1883364835}
+  - {fileID: 242994570}
   - {fileID: 993122390}
   - {fileID: 1527782544}
   - {fileID: 651198792}
@@ -6022,6 +6134,11 @@ PrefabInstance:
       propertyPath: m_ColorPropertyName
       value: _RimColor
       objectReference: {fileID: 0}
+    - target: {fileID: 1891087646957889869, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1909274141423887875, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
       propertyPath: m_ColorPropertyName
@@ -6082,6 +6199,11 @@ PrefabInstance:
       propertyPath: m_ColorPropertyName
       value: _RimColor
       objectReference: {fileID: 0}
+    - target: {fileID: 2089693996428253521, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2093052175509816916, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
       propertyPath: m_ColorPropertyName
@@ -6141,6 +6263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mini Game - Climber (Variant)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281930642001975291, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2315355225554863947, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
@@ -6711,6 +6838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColorPropertyName
       value: _RimColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388299887381013585, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4394725264545949788, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
@@ -7472,6 +7604,16 @@ PrefabInstance:
       propertyPath: m_ColorPropertyName
       value: _RimColor
       objectReference: {fileID: 0}
+    - target: {fileID: 7432056490428823941, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432963860633822742, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7447691191149864674, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
       propertyPath: m_CastShadows
@@ -7761,6 +7903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColorPropertyName
       value: _RimColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124335436052723319, guid: 813642986a89f3a45a88639d20996f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8127526936965137023, guid: 813642986a89f3a45a88639d20996f29,
         type: 3}
@@ -8255,6 +8402,179 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 625825809282665915}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &812522201102543125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1405198638}
+    m_Modifications:
+    - target: {fileID: 249406433666290598, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_Name
+      value: Mini Game - Escape (Variant)
+      objectReference: {fileID: 0}
+    - target: {fileID: 455878362306443378, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4074739404
+      objectReference: {fileID: 0}
+    - target: {fileID: 455878362306443378, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 1354286141
+      objectReference: {fileID: 0}
+    - target: {fileID: 548586249850129854, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 933433633157817040, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_text
+      value: '<b><u>Escape!</u></b>
+
+
+        This is a 2 players coop game where
+        you have to escape a room by solving puzzles.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543167236614998144, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.763
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1760705926535808350, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886764161271056664, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: currentMiniGame
+      value: 
+      objectReference: {fileID: 812522201102543127}
+    - target: {fileID: 2269326512275377984, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3656368703168889240, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154384663233755590, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189690433249116866, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7933542161621796908, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336956905302486896, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8462757487734475779, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_text
+      value: Game Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486174377966617259, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139874019148803699, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 249406433666290598, guid: c727e2c6ce888c8488a13fa13592b830,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812522201102543127}
+  m_SourcePrefab: {fileID: 100100000, guid: c727e2c6ce888c8488a13fa13592b830, type: 3}
+--- !u!1 &812522201102543126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 249406433666290598, guid: c727e2c6ce888c8488a13fa13592b830,
+    type: 3}
+  m_PrefabInstance: {fileID: 812522201102543125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &812522201102543127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812522201102543126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc87efc089875841ae731d200abab54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMP::XRMultiplayer.MiniGames.MiniGame_Escape
+  gameName: Escape
+  m_GameType: 0
+  m_GameLength: 300
+  m_GameInteractables: []
 --- !u!1001 &1188042902095879605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8322,6 +8642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Object Manipulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714373212243383980, guid: e9e8956bce235e54db09fa2f44c06b9d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2220415273697446586, guid: e9e8956bce235e54db09fa2f44c06b9d,
         type: 3}

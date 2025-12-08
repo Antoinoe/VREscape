@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6975473219258190972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1566156421170610303, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932387941086507039, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 3865530837693527482, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186559985508343770, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_Name
+      value: Mini Game - Escape Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394419226304148494, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 174655492
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394419226304148494, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394419226304148494, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 523617625
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798513951849098924, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.58858
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.98619
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.24716
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708333057975480974, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999784273826289479, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd8efcec8c5003244ba72f226b7e898a, type: 3}

@@ -548,6 +548,11 @@ namespace XRMultiplayer.MiniGames
             CheckIfAllPlayersAreFinished();
         }
 
+        public NetworkList<ulong> GetCurrentPlayers()
+        {
+            return m_CurrentPlayers;
+        }
+
         void CheckIfAllPlayersAreFinished()
         {
             bool gameOver = true;

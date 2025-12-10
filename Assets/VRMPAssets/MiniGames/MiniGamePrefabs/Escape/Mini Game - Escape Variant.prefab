@@ -189,6 +189,17 @@ MonoBehaviour:
   m_GameType: 0
   m_GameLength: 300
   m_GameInteractables: []
+  timerText: {fileID: 0}
+  teleportAnchorsParent: {fileID: 0}
+  middleCorridorSeparator: {fileID: 0}
+  redAnchor: {fileID: 0}
+  blueAnchor: {fileID: 0}
+  doors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1760705926535808350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,

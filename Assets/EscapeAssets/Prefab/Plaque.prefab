@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaqueScript
   Red: {fileID: 2100000, guid: 55fa12dc7870f1e46b6a7f8617949a86, type: 2}
   Green: {fileID: 2100000, guid: 727f87098255ad04987a60f5f08390bc, type: 2}
+  Gray: {fileID: 2100000, guid: 88b3109a7e7f9674c8f2d5753d6b3b8f, type: 2}
 --- !u!1 &8860230453299756979
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ GameObject:
   - component: {fileID: 7009644928583959376}
   - component: {fileID: 3284777830436453997}
   - component: {fileID: 6824461983457186689}
+  - component: {fileID: 7414897145047261843}
   m_Layer: 0
   m_Name: DetectionZone
   m_TagString: Untagged
@@ -238,3 +240,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7414897145047261843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860230453299756979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3696082c2d0958418117945bdf89f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChildTrigger

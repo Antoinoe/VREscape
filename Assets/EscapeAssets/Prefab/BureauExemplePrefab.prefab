@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6515711115165486386}
   m_Layer: 0
-  m_Name: BureauPrefab
+  m_Name: BureauExemplePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,8 +44,7 @@ GameObject:
   - component: {fileID: 7524350057400403287}
   - component: {fileID: 4183816047391034504}
   - component: {fileID: 642616222372729979}
-  - component: {fileID: 3207062733876711549}
-  - component: {fileID: 2492570614783072921}
+  - component: {fileID: 1694062366948822181}
   m_Layer: 0
   m_Name: DeskMesh
   m_TagString: Untagged
@@ -145,7 +144,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3207062733876711549
+--- !u!114 &1694062366948822181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,34 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7218486153200733300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5797f3ceb64cf3498fa32aaacedc8af, type: 3}
+  m_Script: {fileID: 11500000, guid: 627c4199a6df5e44a8fcf679cb625061, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Desk
-  Plaque: {fileID: 3195657524656036025, guid: c73991cf1f1ddf94e8b3d649b4bc7163, type: 3}
---- !u!54 &2492570614783072921
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7218486153200733300}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_EditorClassIdentifier: Assembly-CSharp::DeskExemple
+  Cube: {fileID: 7285542428233533372, guid: a9930b5b30ea68947bf439a84f8d4685, type: 3}

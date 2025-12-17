@@ -38,7 +38,7 @@ namespace XRMultiplayer.MiniGames
             base.SetupGame();
 
             teleportAnchorsParent.SetActive(true);
-            middleCorridorSeparator.SetActive(false);
+            //middleCorridorSeparator.SetActive(false);
 
             foreach (var d in doors)
             {
@@ -50,7 +50,7 @@ namespace XRMultiplayer.MiniGames
         {
             base.StartGame();
             print("Game Starts!");
-            SetupPlayersPosition();
+            //SetupPlayersPosition();
 
             OpenDoors(DoorType.FirstGame);
         }

@@ -90,6 +90,11 @@ namespace XRMultiplayer.MiniGames
         [SerializeField] float m_BarrierRenderDistance = 30.0f;
         [SerializeField] Renderer m_BarrierRend;
 
+        [Header("Join Slots")]
+        [SerializeField] private Transform[] m_JoinTransforms; // 2 max
+        private NetworkList<JoinSlot> m_JoinSlotStates = new();
+        private Dictionary<ulong, int> m_PlayerToSlot = new(); // serveur only
+
         readonly List<ScoreboardSlot> m_ScoreboardSlots = new();
         NetworkList<ulong> m_CurrentPlayers;
         NetworkList<ulong> m_QueuedUpPlayers;
@@ -176,7 +181,22 @@ namespace XRMultiplayer.MiniGames
             networkedGameState.OnValueChanged += GameStateValueChanged;
             m_BestAllScore.OnValueChanged += BestAllScoreChanged;
             m_CurrentPlayers.OnListChanged += UpdatePlayerList;
-            UpdateBestScore(m_BestAllScore.Value, m_BestAllText);
+
+            if (IsServer)
+            {
+                NetworkManager.OnClientDisconnectCallback += OnClientDisconnected;
+            }
+            else
+            {
+                m_JoinSlotStates = new NetworkList<JoinSlot>();
+
+                for (int i = 0; i < m_JoinTransforms.Length; i++)
+                {
+                    m_JoinSlotStates.Add(new JoinSlot { IsOccupied = false });
+                }
+            }
+
+                UpdateBestScore(m_BestAllScore.Value, m_BestAllText);
 
             if (IsOwner)
             {
@@ -189,6 +209,8 @@ namespace XRMultiplayer.MiniGames
             {
                 ResetContestants(true);
             }
+
+
         }
 
         /// <inheritdoc/>
@@ -198,6 +220,11 @@ namespace XRMultiplayer.MiniGames
             m_LocalPlayerInGame = false;
             currentPlayerDictionary.Clear();
             m_ScoreboardTransform.SetPositionAndRotation(m_ScoreboardStartPose.position, m_ScoreboardStartPose.rotation);
+            if (IsServer && NetworkManager != null)
+            {
+                NetworkManager.OnClientDisconnectCallback -= OnClientDisconnected;
+            }
+
         }
 
         private void UpdatePlayerList(NetworkListEvent<ulong> changeEvent)
@@ -363,6 +390,8 @@ namespace XRMultiplayer.MiniGames
                     networkedGameState.Value = GameState.PreGame;
                 }
             }
+            ClearAllJoinSlots();
+
         }
 
         IEnumerator PostGameRoutine()
@@ -604,7 +633,12 @@ namespace XRMultiplayer.MiniGames
         [Rpc(SendTo.Owner)]
         void AddPlayerOwnerRpc(ulong clientId)
         {
-            AddPlayerRpc(clientId);
+            if (m_PlayerToSlot.ContainsKey(clientId))
+                return;
+
+            int joinSlotIndex = AssignJoinSlot(clientId);
+
+            AddPlayerRpc(clientId, joinSlotIndex);
             if (m_QueuedUpPlayers.Count < maxAllowedPlayers)
             {
                 m_QueuedUpPlayers.Add(clientId);
@@ -612,7 +646,7 @@ namespace XRMultiplayer.MiniGames
         }
 
         [Rpc(SendTo.Everyone)]
-        void AddPlayerRpc(ulong clientId)
+        void AddPlayerRpc(ulong clientId, int joinSlotIndex = -1)
         {
             if (currentPlayerDictionary.Count < maxAllowedPlayers)
             {
@@ -627,15 +661,33 @@ namespace XRMultiplayer.MiniGames
                     m_TeleportZonesObject.SetActive(true);
                     m_DynamicButton.UpdateButton(RemoveLocalPlayer, "Leave");
 
-                    TeleportRequest teleportRequest = new()
-                    {
-                        destinationPosition = m_JoinTeleportTransform.position,
-                        destinationRotation = m_JoinTeleportTransform.rotation,
-                        matchOrientation = MatchOrientation.TargetUpAndForward
-                    };
 
+                    TeleportRequest teleportRequest;
+                    if (joinSlotIndex != -1)
+                    {
+                        Transform joinTransform = m_JoinTransforms[joinSlotIndex];
+
+                        teleportRequest = new()
+                        {
+                            destinationPosition = joinTransform.position,
+                            destinationRotation = joinTransform.rotation,
+                            matchOrientation = MatchOrientation.TargetUpAndForward
+                        };
+                    }
+                    else
+                    {
+                        teleportRequest = new()
+                        {
+                            destinationPosition = m_JoinTeleportTransform.position,
+                            destinationRotation = m_JoinTeleportTransform.rotation,
+                            matchOrientation = MatchOrientation.TargetUpAndForward
+                        };
+                    }
+
+                    Vector3 basePosition = joinSlotIndex != -1 ? m_JoinTransforms[joinSlotIndex].position : m_JoinTeleportTransform.position;
+                    print($"join slot index : {joinSlotIndex}");
                     m_LocalPlayerTeleportProvider.QueueTeleportRequest(teleportRequest);
-                    Transform destination = GetClosestReadyPosition(m_JoinTeleportTransform.position);
+                    Transform destination = GetClosestReadyPosition(basePosition);
                     m_ScoreboardTransform.rotation = destination.rotation;
                     m_ScoreboardTransform.position = destination.position + (m_ScoreboardTransform.forward + m_PreGameOffset);
                     PlayerHudNotification.Instance.ShowText($"Joined {currentMiniGame.gameName}");
@@ -675,6 +727,7 @@ namespace XRMultiplayer.MiniGames
         [Rpc(SendTo.Owner)]
         void RemovePlayerOwnerRpc(ulong clientId)
         {
+            ReleaseJoinSlot(clientId);
             RemovePlayerRpc(clientId);
 
             if (m_QueuedUpPlayers.Contains(clientId))
@@ -956,6 +1009,76 @@ namespace XRMultiplayer.MiniGames
                 Instantiate(m_PlayerScoreboardSlotPrefab, m_ContentListParent).TryGetComponent(out ScoreboardSlot slot);
                 m_ScoreboardSlots.Add(slot);
                 slot.SetSlotOpen();
+            }
+        }
+
+        private int AssignJoinSlot(ulong clientId)
+        {
+            if (m_PlayerToSlot.ContainsKey(clientId))
+            {
+                Debug.LogWarning($"Client {clientId} is already assigned to a join slot.");
+                return m_PlayerToSlot[clientId];
+            }
+
+            Debug.LogWarning($"{m_JoinSlotStates.Count}");
+            for (int i = 0; i < m_JoinSlotStates.Count; i++)
+            {
+                Debug.LogWarning($"Checking join slot {i} for Client {clientId}. Occupied: {m_JoinSlotStates[i].IsOccupied}");
+                if (!m_JoinSlotStates[i].IsOccupied)
+                {
+                    Debug.LogWarning($"Assigning Client {clientId} to join slot {i}.");
+                    m_JoinSlotStates[i] = new JoinSlot { IsOccupied = true };
+                    m_PlayerToSlot[clientId] = i;
+                    return i;
+                }
+            }
+            Debug.LogWarning($"No available join slots for Client {clientId}.");
+            // Sécurité : mini-jeu plein
+            return -1;
+        }
+
+        private void ReleaseJoinSlot(ulong clientId)
+        {
+            if (!IsServer)
+                return;
+
+            if (!m_PlayerToSlot.TryGetValue(clientId, out int slotIndex))
+                return;
+
+            m_JoinSlotStates[slotIndex] = new JoinSlot { IsOccupied = false };
+            m_PlayerToSlot.Remove(clientId);
+        }
+        private void OnClientDisconnected(ulong clientId)
+        {
+            ReleaseJoinSlot(clientId);
+        }
+
+        private void ClearAllJoinSlots()
+        {
+            if (!IsServer)
+                return;
+
+            foreach (var kvp in m_PlayerToSlot)
+            {
+                m_JoinSlotStates[kvp.Value] = new JoinSlot { IsOccupied = false };
+            }
+
+            m_PlayerToSlot.Clear();
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (m_JoinTransforms == null)
+                return;
+
+            for (int i = 0; i < m_JoinTransforms.Length; i++)
+            {
+                Gizmos.color =
+                    (m_JoinSlotStates != null && i < m_JoinSlotStates.Count && m_JoinSlotStates[i].IsOccupied)
+                        ? Color.red
+                        : Color.green;
+
+                Gizmos.DrawSphere(m_JoinTransforms[i].position, 0.15f);
             }
         }
     }

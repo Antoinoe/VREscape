@@ -28,6 +28,7 @@ public class DeskExemple : MonoBehaviour
             {
                 CubePosition.z = OriginalPosition.z + (0.5f + 2*j) * Cube.transform.localScale.z;
                 Cubes[index] = Instantiate(Cube, CubePosition, Quaternion.identity);
+                Cubes[index].GetComponent<CubeScript>().Symbol = CubeScript.ESymbol.borromean;
                 Cubes[index].GetComponent<CubeScript>().IsLocked = true;
                 Cubes[index].transform.SetParent(transform);
             }

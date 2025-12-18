@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 2361938882056887815, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2361938882056887815, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
@@ -152,10 +152,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 8903227649722120226, guid: a9930b5b30ea68947bf439a84f8d4685,
+        type: 3}
+      propertyPath: DeskScript
+      value: 
+      objectReference: {fileID: 2133549034}
     - target: {fileID: 9041273914433123399, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.538
+      value: 1.016
       objectReference: {fileID: 0}
     - target: {fileID: 9041273914433123399, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
@@ -245,6 +250,11 @@ PrefabInstance:
     - target: {fileID: 2492570614783072921, guid: 1b3a56405af15014e9903e0b878a4925,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207062733876711549, guid: 1b3a56405af15014e9903e0b878a4925,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3207062733876711549, guid: 1b3a56405af15014e9903e0b878a4925,
@@ -350,6 +360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8903227649722120226, guid: a9930b5b30ea68947bf439a84f8d4685,
+        type: 3}
+      propertyPath: DeskScript
+      value: 
+      objectReference: {fileID: 2133549034}
     - target: {fileID: 9041273914433123399, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -506,6 +521,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8903227649722120226, guid: a9930b5b30ea68947bf439a84f8d4685,
+        type: 3}
+      propertyPath: DeskScript
+      value: 
+      objectReference: {fileID: 2133549034}
     - target: {fileID: 9041273914433123399, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -858,6 +878,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8903227649722120226, guid: a9930b5b30ea68947bf439a84f8d4685,
+        type: 3}
+      propertyPath: DeskScript
+      value: 
+      objectReference: {fileID: 2133549034}
     - target: {fileID: 9041273914433123399, guid: a9930b5b30ea68947bf439a84f8d4685,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -913,15 +938,27 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9930b5b30ea68947bf439a84f8d4685, type: 3}
+--- !u!114 &2133549034 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3207062733876711549, guid: 1b3a56405af15014e9903e0b878a4925,
+    type: 3}
+  m_PrefabInstance: {fileID: 269754076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5797f3ceb64cf3498fa32aaacedc8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Desk
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1609577070}
   - {fileID: 1655351051}
+  - {fileID: 1098973676}
   - {fileID: 269754076}
   - {fileID: 30904162}
   - {fileID: 1498916452}
   - {fileID: 1705262007}
   - {fileID: 996780615}
-  - {fileID: 1098973676}

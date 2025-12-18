@@ -35,7 +35,7 @@ public class PlaqueScript : MonoBehaviour
     
     private void ChildTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Cube"))
+        if (other.CompareTag("Cube") && !isMatching)
         {
             Vector3 position = transform.position;
             //position.y += transform.position.y/2 + other.transform.position.y / 2;
@@ -60,7 +60,10 @@ public class PlaqueScript : MonoBehaviour
         if (other.CompareTag("Cube"))
         {
             GetComponent<Renderer>().material = Gray;
-            isMatching = false;
+            if (isMatching)
+            {
+                isMatching = false;
+            }
             Debug.Log("exit");
         }
     }

@@ -8,8 +8,10 @@ public class CubeScript : MonoBehaviour
     private ESymbol symbol;
     private Material material;
     private bool isLocked = false;
+    
     public enum ESymbol
     {
+        borromean,
         A1,
         Rond,
         Carré,
@@ -25,6 +27,7 @@ public class CubeScript : MonoBehaviour
     public ESymbol Symbol
     {
         get => symbol;
+        set => symbol = value;
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,8 +36,6 @@ public class CubeScript : MonoBehaviour
         Random rnd = new Random();
         int value = rnd.Next(0, Enum.GetValues(typeof(ESymbol)).Length);
         //symbol = (Symbol)value;
-        symbol = ESymbol.A1;
-        
         var renderer = GetComponent<Renderer>();
         renderer.material = new Material(renderer.material.shader);
         string path = "Textures/";

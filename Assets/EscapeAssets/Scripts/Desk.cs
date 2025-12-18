@@ -43,6 +43,6 @@ public class Desk : MonoBehaviour
             }
         }
         isWin = temp;
-        Console.WriteLine(isWin);
+        Debug.Log(isWin);
     }
 }

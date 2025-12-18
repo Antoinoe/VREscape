@@ -31,7 +31,7 @@ namespace XRMultiplayer.MiniGames
         public override void Start()
         {
             base.Start();
-            ChangeState(EscapeGameState.FirstGame);
+            ChangeState(EscapeGameState.None);
         }
 
         public override void SetupGame()

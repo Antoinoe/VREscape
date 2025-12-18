@@ -5,8 +5,10 @@ using UnityEngine;
 
 namespace XRMultiplayer.MiniGames
 {
-    public enum DoorType
+    [Serializable]
+    public enum EscapeGameState
     {
+        None,
         FirstGame,
         SecondGame,
         Exit
@@ -16,21 +18,20 @@ namespace XRMultiplayer.MiniGames
     {
         public ulong initiatorClientId; //the player who initiated the mini game
 
+        [HideInInspector] public EscapeGameState CurrentEscapeGameState { get; private set; }
+        public event Action<EscapeGameState> OnStateEntered;
+        public event Action<EscapeGameState> OnStateExited;
+        
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private GameObject teleportAnchorsParent;
         [SerializeField] private GameObject middleCorridorSeparator;
         [SerializeField] private Transform redAnchor, blueAnchor;
         [SerializeField] private Transform[] doors;
 
-        private MiniGameManager miniGameManager;
-        private bool isPlayerOne = false;
-        private ulong selfId = 0;
-        
         public override void Start()
         {
             base.Start();
-            miniGameManager = GetComponent<MiniGameManager>();
-            selfId = NetworkManager.Singleton.LocalClientId;
+            ChangeState(EscapeGameState.FirstGame);
         }
 
         public override void SetupGame()
@@ -38,7 +39,6 @@ namespace XRMultiplayer.MiniGames
             base.SetupGame();
 
             teleportAnchorsParent.SetActive(true);
-            //middleCorridorSeparator.SetActive(false);
 
             foreach (var d in doors)
             {
@@ -50,9 +50,8 @@ namespace XRMultiplayer.MiniGames
         {
             base.StartGame();
             print("Game Starts!");
-            //SetupPlayersPosition();
 
-            OpenDoors(DoorType.FirstGame);
+            ChangeState(EscapeGameState.FirstGame);
         }
 
         public override void UpdateGame(float deltaTime)
@@ -71,86 +70,58 @@ namespace XRMultiplayer.MiniGames
             base.FinishGame(submitScore);
         }
 
-        public void FirstSubMiniGameCompleteTrigger()
+        #region State Machine
+        public void ChangeState(EscapeGameState newState)
         {
-            Debug.Log("First Sub MiniGame Complete Triggered");
-            OpenDoors(DoorType.SecondGame);
-        }
-
-        public void SecondSubMiniGameCompleteTrigger()
-        {
-            Debug.Log("Second Sub MiniGame Complete Triggered");
-            OpenDoors(DoorType.Exit);
-        }
-
-        private void Teleport(NetworkObject playerObj, Transform anchor)
-        {
-            if(anchor == null)
+            if (newState == CurrentEscapeGameState)
                 return;
-            Debug.LogWarning($"Teleporting player {playerObj.OwnerClientId} to anchor.");
-            var playerController = playerObj.GetComponent<CharacterController>();
-            if (playerController != null) playerController.enabled = false;
 
-            playerObj.transform.SetPositionAndRotation(anchor.position, anchor.rotation);
-
-            if (playerController != null) playerController.enabled = true;
+            ExitState(CurrentEscapeGameState);
+            CurrentEscapeGameState = newState;
+            EnterState(CurrentEscapeGameState);
         }
 
-        private Transform GetClosestAnchor(Transform player)
+        private void EnterState(EscapeGameState state)
         {
-            float distRed = Vector3.Distance(player.position, redAnchor.position);
-            float distBlue = Vector3.Distance(player.position, blueAnchor.position);
+            Debug.Log($"Enter state: {state}");
+            OnStateEntered?.Invoke(state);
 
-            return (distRed < distBlue) ? redAnchor : blueAnchor;
-        }
-
-        private void OpenDoors(DoorType type)
-        {
-            switch (type)
+            switch (state)
             {
-                case DoorType.FirstGame:
-                    if (isPlayerOne)
-                        doors[0].gameObject.SetActive(false);
-                    else
-                        doors[2].gameObject.SetActive(false);
+                case EscapeGameState.FirstGame:
+                    doors[0].gameObject.SetActive(false);
+                    doors[2].gameObject.SetActive(false);
                     break;
-                case DoorType.SecondGame:
-                    if (isPlayerOne)
-                        doors[1].gameObject.SetActive(false);
-                    else
-                        doors[3].gameObject.SetActive(false);
+
+                case EscapeGameState.SecondGame:
+                    doors[1].gameObject.SetActive(false);
+                    doors[3].gameObject.SetActive(false);
                     break;
-                case DoorType.Exit:
+
+                case EscapeGameState.Exit:
                     doors[4].gameObject.SetActive(false);
+                    doors[5].gameObject.SetActive(false);
                     break;
             }
         }
 
-        private void SetupPlayersPosition()
+        private void ExitState(EscapeGameState state)
         {
-            var players = miniGameManager.GetCurrentPlayers();
+            Debug.Log($"Exit state: {state}");
+            OnStateExited?.Invoke(state);
 
-            if (players.Count < 2)
+            switch (state)
             {
-                Debug.LogError("Not enough players to setup the player's position");
-                return;
+                case EscapeGameState.FirstGame:
+                    // Cleanup premier jeu
+                    break;
+
+                case EscapeGameState.SecondGame:
+                    // Cleanup second jeu
+                    break;
             }
-
-            ulong initiatorId = players[0];
-            ulong otherId = players[1];
-
-            Debug.LogWarning($"Player 0 ID : {initiatorClientId}. is self? {initiatorClientId == selfId}");
-            Debug.LogWarning($"Player 1 ID : {otherId}. is self? {initiatorClientId == selfId}");
-
-            NetworkObject initiator = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(initiatorId);
-            NetworkObject other = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(otherId);
-
-            Transform anchorForInitiator = GetClosestAnchor(initiator.transform);
-            Transform anchorForOther = (anchorForInitiator == redAnchor) ? blueAnchor : redAnchor;
-
-            Teleport(initiator, anchorForInitiator);
-            Teleport(other, anchorForOther);
         }
+        #endregion
     }
 }
 

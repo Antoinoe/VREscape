@@ -1,0 +1,18 @@
+{
+    "name": "XRMultiplayer.Editor.asmdef",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1e1f826984429fe4984c920feb90cece"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

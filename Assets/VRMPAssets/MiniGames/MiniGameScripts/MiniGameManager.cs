@@ -95,6 +95,7 @@ namespace XRMultiplayer.MiniGames
         private NetworkList<JoinSlot> m_JoinSlotStates = new();
         private Dictionary<ulong, int> m_PlayerToSlot = new(); // serveur only
 
+
         readonly List<ScoreboardSlot> m_ScoreboardSlots = new();
         NetworkList<ulong> m_CurrentPlayers;
         NetworkList<ulong> m_QueuedUpPlayers;
@@ -196,7 +197,7 @@ namespace XRMultiplayer.MiniGames
                 }
             }
 
-                UpdateBestScore(m_BestAllScore.Value, m_BestAllText);
+            UpdateBestScore(m_BestAllScore.Value, m_BestAllText);
 
             if (IsOwner)
             {
@@ -520,6 +521,7 @@ namespace XRMultiplayer.MiniGames
             }
             m_QueuedUpPlayers.Clear();
             networkedGameState.Value = GameState.InGame;
+            EnableStartTriggerRpc(false);
         }
 
         [Rpc(SendTo.Owner)]
@@ -638,10 +640,17 @@ namespace XRMultiplayer.MiniGames
 
             int joinSlotIndex = AssignJoinSlot(clientId);
 
+            Debug.LogWarning($"Client {clientId} assigned to join slot index {joinSlotIndex}.");
             AddPlayerRpc(clientId, joinSlotIndex);
             if (m_QueuedUpPlayers.Count < maxAllowedPlayers)
             {
                 m_QueuedUpPlayers.Add(clientId);
+                Debug.LogWarning($"Client {clientId} added to queue. Total queued players: {m_QueuedUpPlayers.Count}. Max allowed players : {maxAllowedPlayers}.");
+                if (currentPlayerDictionary.Count == maxAllowedPlayers)
+                {
+                    Debug.LogWarning("Max players reached, enabling start trigger.");
+                    EnableStartTrigger();
+                }
             }
         }
 
@@ -1080,6 +1089,19 @@ namespace XRMultiplayer.MiniGames
 
                 Gizmos.DrawSphere(m_JoinTransforms[i].position, 0.15f);
             }
+        }
+
+        public void EnableStartTrigger()
+        {
+            Debug.LogWarning("EnableStartTrigger called.");
+            EnableStartTriggerRpc(true);
+        }
+
+        [Rpc(SendTo.Everyone)]
+        private void EnableStartTriggerRpc(bool enabled)
+        {
+            Debug.LogWarning($"EnableStartTriggerRpc called with enabled={enabled}");
+            m_StartZoneTrigger[0].gameObject.SetActive(enabled);
         }
     }
 }

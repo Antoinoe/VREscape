@@ -1,32 +1,68 @@
+using System;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
 namespace XRMultiplayer.MiniGames
 {
+    [Serializable]
+    public enum EscapeGameState
+    {
+        None,
+        FirstGame,
+        SecondGame,
+        Exit
+    }
+
     public class MiniGame_Escape : MiniGameBase
     {
+        public ulong initiatorClientId; //the player who initiated the mini game
+
+        [HideInInspector] public EscapeGameState CurrentEscapeGameState { get; private set; }
+        public event Action<EscapeGameState> OnStateEntered;
+        public event Action<EscapeGameState> OnStateExited;
+        
+        [SerializeField] private TextMeshProUGUI timerText;
+        [SerializeField] private GameObject teleportAnchorsParent;
+        [SerializeField] private GameObject middleCorridorSeparator;
         [SerializeField] private Transform redAnchor, blueAnchor;
+        [SerializeField] private Transform[] doors;
 
         public override void Start()
         {
             base.Start();
+            ChangeState(EscapeGameState.FirstGame);
         }
 
         public override void SetupGame()
         {
             base.SetupGame();
+
+            teleportAnchorsParent.SetActive(true);
+
+            foreach (var d in doors)
+            {
+                d.gameObject.SetActive(true);
+            }
         }
 
         public override void StartGame()
         {
             base.StartGame();
             print("Game Starts!");
-            ResetPlayerPosition();
+
+            ChangeState(EscapeGameState.FirstGame);
         }
 
         public override void UpdateGame(float deltaTime)
         {
             base.UpdateGame(deltaTime);
+            UpdateTimerText();
+        }
+
+        private void UpdateTimerText()
+        {
+            timerText.text = TimeSpan.FromSeconds(Mathf.CeilToInt(m_CurrentTimer)).ToString(@"mm\:ss");
         }
 
         public override void FinishGame(bool submitScore = true)
@@ -34,26 +70,58 @@ namespace XRMultiplayer.MiniGames
             base.FinishGame(submitScore);
         }
 
-        private void ResetPlayerPosition()
+        #region State Machine
+        public void ChangeState(EscapeGameState newState)
         {
-            var players = NetworkManager.Singleton.ConnectedClientsList;
+            if (newState == CurrentEscapeGameState)
+                return;
 
-            if (players.Count >= 1 && redAnchor != null)
-                Teleport(players[0].PlayerObject, blueAnchor);
-
-            if (players.Count >= 2 && blueAnchor != null)
-                Teleport(players[1].PlayerObject, redAnchor);
-
+            ExitState(CurrentEscapeGameState);
+            CurrentEscapeGameState = newState;
+            EnterState(CurrentEscapeGameState);
         }
 
-        private void Teleport(NetworkObject playerObj, Transform anchor)
+        private void EnterState(EscapeGameState state)
         {
-            var t = playerObj.transform;
+            Debug.Log($"Enter state: {state}");
+            OnStateEntered?.Invoke(state);
 
-            t.position = anchor.position;
-            t.rotation = anchor.rotation;
+            switch (state)
+            {
+                case EscapeGameState.FirstGame:
+                    doors[0].gameObject.SetActive(false);
+                    doors[2].gameObject.SetActive(false);
+                    break;
+
+                case EscapeGameState.SecondGame:
+                    doors[1].gameObject.SetActive(false);
+                    doors[3].gameObject.SetActive(false);
+                    break;
+
+                case EscapeGameState.Exit:
+                    doors[4].gameObject.SetActive(false);
+                    doors[5].gameObject.SetActive(false);
+                    break;
+            }
         }
 
+        private void ExitState(EscapeGameState state)
+        {
+            Debug.Log($"Exit state: {state}");
+            OnStateExited?.Invoke(state);
+
+            switch (state)
+            {
+                case EscapeGameState.FirstGame:
+                    // Cleanup premier jeu
+                    break;
+
+                case EscapeGameState.SecondGame:
+                    // Cleanup second jeu
+                    break;
+            }
+        }
+        #endregion
     }
 }
 

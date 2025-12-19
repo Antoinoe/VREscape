@@ -6,31 +6,26 @@ public class CubeTest : MonoBehaviour
 {
     public Texture2D tex;
     public EPattern pattern;
-    public Dictionary<EPattern, Texture2D> patternTextures;
+    public Dictionary<EPattern, string> patternTextures;
     private const string TEXTURE_PATH = "Assets/VRMPAssets/MiniGames/MiniGameTextures/Escape";
 
     private void Awake()
     {
-        
-    }
-
-    private void Start()
-    {
-        patternTextures = new Dictionary<EPattern, Texture2D>(){
-                { EPattern.A1, Resources.Load<Texture2D>($"{TEXTURE_PATH}/a") },
-                { EPattern.BORROMEAN, Resources.Load<Texture2D>($"{TEXTURE_PATH}/borromean") },
-                { EPattern.ENNEAGRAM, Resources.Load<Texture2D>($"{TEXTURE_PATH}/enneagram") },
-                { EPattern.FLEURDEVIE, Resources.Load<Texture2D>($"{TEXTURE_PATH}/fleurdevie") },
-                { EPattern.HEPTAGRAM, Resources.Load<Texture2D>($"{TEXTURE_PATH}/heptagram") },
-                { EPattern.MAZE, Resources.Load<Texture2D>($"{TEXTURE_PATH}/maze") },
-                { EPattern.OCTAGRAM, Resources.Load<Texture2D>($"{TEXTURE_PATH}/octagram") },
-                { EPattern.CIRTRIANGLE, Resources.Load<Texture2D>($"{TEXTURE_PATH}/cirtriangle") },
-                { EPattern.TRIFORCE, Resources.Load<Texture2D>($"{TEXTURE_PATH}/triangles") },
-                { EPattern.GRID, Resources.Load<Texture2D>($"{TEXTURE_PATH}/grid") },
-                { EPattern.SACRED, Resources.Load<Texture2D>($"{TEXTURE_PATH}/sacred") },
-                { EPattern.SIERPINSKI, Resources.Load<Texture2D>($"{TEXTURE_PATH}/sierpinski") },
-                { EPattern.SPIRAL, Resources.Load<Texture2D>($"{TEXTURE_PATH}/spiral") },
-                { EPattern.YINYANG, Resources.Load<Texture2D>($"{TEXTURE_PATH}/yinyang") }
+        patternTextures = new Dictionary<EPattern, string>(){
+                { EPattern.A1, "a" },
+                { EPattern.BORROMEAN, "borromean"},
+                { EPattern.ENNEAGRAM, "enneagram" },
+                { EPattern.FLEURDEVIE, "fleurdevie" },
+                { EPattern.HEPTAGRAM, "heptagram"},
+                { EPattern.MAZE, "maze" },
+                { EPattern.OCTAGRAM, "octagram"},
+                { EPattern.CIRTRIANGLE, "cirtriangle" },
+                { EPattern.TRIFORCE, "triangles" },
+                { EPattern.GRID, "grid" },
+                { EPattern.SACRED, "sacred" },
+                { EPattern.SIERPINSKI, "sierpinski" },
+                { EPattern.SPIRAL, "spiral" },
+                { EPattern.YINYANG, "yinyang" }
             };
     }
 
@@ -38,9 +33,15 @@ public class CubeTest : MonoBehaviour
     {
 
         pattern = p;
-        var mr = GetComponent<MeshRenderer>();
-        mr.material = new Material(mr.material.shader);
-        //mr.material.mainTexture = patternTextures[pattern];
+        //var mr = GetComponent<MeshRenderer>();
+        //mr.material = new Material(mr.material.shader);
+
+        //var renderer = GetComponent<Renderer>();
+        //renderer.material = new Material(renderer.material.shader);
+        //string path = "Assets/VRMPAssets/MiniGames/MiniGameTextures/Escape/";
+        //path = path + patternTextures[pattern];
+        //Debug.LogError($"PATH TEX FOR {patternTextures[pattern]} : {path}");
+        //renderer.material.mainTexture = Resources.Load<Texture2D>(path);
     }
 
 }

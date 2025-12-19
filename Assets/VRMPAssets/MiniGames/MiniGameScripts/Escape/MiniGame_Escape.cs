@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace XRMultiplayer.MiniGames
@@ -16,17 +18,25 @@ namespace XRMultiplayer.MiniGames
 
     public class MiniGame_Escape : MiniGameBase
     {
-        public ulong initiatorClientId; //the player who initiated the mini game
+        public bool isPlayerInRedZone { get; private set;}
 
         [HideInInspector] public EscapeGameState CurrentEscapeGameState { get; private set; }
         public event Action<EscapeGameState> OnStateEntered;
         public event Action<EscapeGameState> OnStateExited;
-        
+
+        private CubeSubMiniGame cubeSubMiniGame;
+        private MiniGameManager MGM;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private GameObject teleportAnchorsParent;
         [SerializeField] private GameObject middleCorridorSeparator;
         [SerializeField] private Transform redAnchor, blueAnchor;
         [SerializeField] private Transform[] doors;
+
+        private void Awake()
+        {
+            cubeSubMiniGame = GetComponent<CubeSubMiniGame>();
+            MGM = GetComponent<MiniGameManager>();
+        }
 
         public override void Start()
         {
@@ -37,7 +47,7 @@ namespace XRMultiplayer.MiniGames
         public override void SetupGame()
         {
             base.SetupGame();
-
+            
             teleportAnchorsParent.SetActive(true);
 
             foreach (var d in doors)
@@ -50,7 +60,7 @@ namespace XRMultiplayer.MiniGames
         {
             base.StartGame();
             print("Game Starts!");
-
+            isPlayerInRedZone = IsPlayerInRedZone();
             ChangeState(EscapeGameState.FirstGame);
         }
 
@@ -68,6 +78,22 @@ namespace XRMultiplayer.MiniGames
         public override void FinishGame(bool submitScore = true)
         {
             base.FinishGame(submitScore);
+        }
+
+        private bool IsPlayerInRedZone()
+        {
+            XRINetworkPlayer localPlayer = XRINetworkPlayer.LocalPlayer;
+
+            if (localPlayer == null)
+            {
+                Debug.LogError("Local player not found.");
+                return false;
+            }
+
+            // Position RELATIVE au mini-jeu
+            Vector3 localPos = transform.InverseTransformPoint(localPlayer.transform.position);
+            Debug.LogWarning($"Local Player Position: {localPos}");
+            return localPos.z > 0f;
         }
 
         #region State Machine
@@ -91,6 +117,7 @@ namespace XRMultiplayer.MiniGames
                 case EscapeGameState.FirstGame:
                     doors[0].gameObject.SetActive(false);
                     doors[2].gameObject.SetActive(false);
+                    cubeSubMiniGame.Init(isPlayerInRedZone);
                     break;
 
                 case EscapeGameState.SecondGame:

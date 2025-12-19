@@ -166,6 +166,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7343279627665964642}
+    - targetCorrespondingSourceObject: {fileID: 7186559985508343770, guid: cd8efcec8c5003244ba72f226b7e898a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5497568108089921800}
   m_SourcePrefab: {fileID: 100100000, guid: cd8efcec8c5003244ba72f226b7e898a, type: 3}
 --- !u!1 &249406433666290598 stripped
 GameObject:
@@ -189,6 +193,7 @@ MonoBehaviour:
   m_GameType: 0
   m_GameLength: 300
   m_GameInteractables: []
+  initiatorClientId: 0
   timerText: {fileID: 0}
   teleportAnchorsParent: {fileID: 0}
   middleCorridorSeparator: {fileID: 0}
@@ -200,6 +205,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &5497568108089921800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249406433666290598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74781edc9ab11f94eb60853c281bc24c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMP::XRMultiplayer.MiniGames.CubeSubMiniGame
+  ShowTopMostFoldoutHeaderGroup: 0
+  cubePrefab: {fileID: 7285542428233533372, guid: a9930b5b30ea68947bf439a84f8d4685,
+    type: 3}
 --- !u!4 &1760705926535808350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8692672242434509090, guid: cd8efcec8c5003244ba72f226b7e898a,

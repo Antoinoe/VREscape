@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Unity.Netcode;
-using System;
+using UnityEngine;
+using System.Linq;
 
 namespace XRMultiplayer.MiniGames
 {
@@ -32,7 +32,9 @@ namespace XRMultiplayer.MiniGames
         private const int NB_MAX_CUBES = 20;
 
         [SerializeField] private GameObject cubePrefab;
-        [SerializeField] private Dictionary<EPattern, Texture2D> patternTextures;
+        [SerializeField] private DeskExemple redDesk, blueDesk;
+        [SerializeField] private Desk redD, blueD;
+        public Dictionary<EPattern, Texture2D> patternTextures;
         //Red desk ref
         //Blue desk ref
 
@@ -103,7 +105,6 @@ namespace XRMultiplayer.MiniGames
             foreach (var sol in solutions)
             {
                 solutionsId.Add((int)sol);
-
             }
 
             //init desk rouge
@@ -113,6 +114,23 @@ namespace XRMultiplayer.MiniGames
             var completeList = GetRandomPattern(NB_MAX_CUBES - NB_SOLUTIONS, onlyOnce: false, solutions);
             completeList.AddRange(solutions);
             completeList.Shuffle();
+            List<int> premiers = new();
+            List<int> derniers = new();
+
+            for (int i = 0; i < 4; i++)
+            {
+                premiers.Add(solutionsId[i]);
+            }
+            for (int i = 3; i < solutionsId.Count; i++)
+            {
+                derniers.Add(solutionsId[i]);
+            }
+
+            redDesk.Init(premiers);
+            blueDesk.Init(derniers);
+
+            redD.Init();
+            blueD.Init();
 
             //regénérer les solutions pour chaque joueurs
             //générer les cubes statiques avec la solution

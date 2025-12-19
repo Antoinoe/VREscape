@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using XRMultiplayer.MiniGames;
 using Random = System.Random;
 
 public class PlaqueScript : MonoBehaviour
@@ -7,14 +8,8 @@ public class PlaqueScript : MonoBehaviour
     [SerializeField] private Material Red;
     [SerializeField] private Material Green;
     [SerializeField] private Material Gray;
-    private CubeScript.ESymbol symbol;
+    public EPattern symbol;
     private bool isMatching;
-
-    public CubeScript.ESymbol Symbol
-    {
-        get { return symbol; }
-        set { symbol = value; }
-    }
 
     public bool IsMatching
     {
@@ -41,7 +36,7 @@ public class PlaqueScript : MonoBehaviour
             //position.y += transform.position.y/2 + other.transform.position.y / 2;
             other.transform.position = position;
             other.transform.rotation = Quaternion.identity;
-            if (symbol == other.GetComponent<CubeScript>().Symbol)
+            if (symbol == other.GetComponent<CubeTest>().pattern)
             {
                 GetComponent<Renderer>().material = Green;
                 isMatching = true;

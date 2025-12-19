@@ -5,6 +5,7 @@ using Random = System.Random;
 
 public class CubeScript : MonoBehaviour
 {
+    [SerializeField] private Texture2D tex;
     private ESymbol symbol;
     private Material material;
     private bool isLocked = false;
@@ -44,7 +45,8 @@ public class CubeScript : MonoBehaviour
 
         if (isLocked)
         {
-            Destroy(GetComponent<Rigidbody>());
+            var rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
             var interactable = GetComponent<XRGrabInteractable>();
             if (interactable != null)
             {

@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
 using TMPro;
-using Unity.Netcode;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace XRMultiplayer.MiniGames
